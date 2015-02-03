@@ -3,4 +3,4 @@ This app will allow you to select from a menu category (appetizer, entree, or de
 
 Users will be able to edit and add to the list of food items but not the established categories.
 
-You can access this link from Heroku at: https://git.heroku.com/fallonsmenuapp.git
+You can access this link from Heroku at: https://fallonsmenuapp.herokuapp.com/
