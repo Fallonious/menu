@@ -1,10 +1,12 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    @item = Item.all
+    @categories = Category.all
   end
 
   def show
+    redirect_to edit_item_path(@item)
   end
 
   def new
@@ -18,38 +20,36 @@ class ItemsController < ApplicationController
     @item = Item.new(name, price, description, category_id)
     respond_to do |format|
       if @item.save
-        format.html { redirect_to root_path, notice: 'New item was successfully created.' }
+        redirect_to root_path, notice: 'New item was successfully created.'
         # format.json { render :show, status: :created, location: @item }
       else
-        format.html { render :new }
+        render :new
         # format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def update
-    respond_to do |format|
-      if @item.update(item_params)
-        format.html { redirect_to root_path, notice: 'Item was successfully updated.' }
-        # format.json { render :show, status: :ok, location: @item }
-      else
-        format.html { render :edit }
+    # respond_to do |format|
+    if @item.update(item_params)
+      redirect_to root_path, notice: 'Item was successfully updated.'
+      # format.json { render :show, status: :ok, location: @item }
+    else
+      render :edit
         # format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
     end
   end
 
   def destroy
     @item.destroy
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Item was successfully destroyed.' }
-      # format.json { head :no_content }
-    end
+    # respond_to do |format|
+    redirect_to root_path, notice: 'Item was successfully destroyed.'
+    # format.json { head :no_content }
   end
 
   private
   def set_item
-    @item
+    @item = Item.find(params[:id])
   end
 
   def item_params

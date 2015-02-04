@@ -1,7 +1,7 @@
-<%= form_for(@items) do |f| %>
-<% if @items.errors.any? %>
+<%= form_for(@item) do |f| %>
+<% if @item.errors.any? %>
 <div id="error_explanation">
-  <h2><%= pluralize(@items.errors.count, "error") %> prohibited this item from being saved:</h2>
+  <h2><%= pluralize(@item.errors.count, "error") %> prohibited this weight from being saved:</h2>
 
   <ul>
     <% @item.errors.full_messages.each do |message| %>
@@ -13,19 +13,19 @@
 
 <div class="field">
   <%= f.label :name %><br>
-  <!-- <%= f.datetime_select :consumed_on %> -->
+  <%= f.text_field :name %>
 </div>
 <div class="field">
   <%= f.label :price %><br>
-  <!-- <%= f.text_field :food %> -->
+  <%= f.number_field :price, step: 0.01 %>
 </div>
 <div class="field">
   <%= f.label :description %><br>
-  <!-- <%= f.number_field :calorie_intake %> -->
+  <%= f.text_area :description %>
 </div>
 <div class="field">
   <%= f.label :category_id %><br>
-  <!-- <%= f.number_field :calorie_intake %> -->
+  <%= f.collection_select :category_id, Category.all, :id, :description %>
 </div>
 <div class="actions">
   <%= f.submit %>
