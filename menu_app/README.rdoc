@@ -1,0 +1,4 @@
+== README
+This app will allow you to select from a menu category (appetizer, entree, or dessert) and then see the available menu items in that category.
+
+Users will be able to edit and add to the list of food items but not the established categories.
