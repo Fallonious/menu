@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<p><h2> Today you are planning on eating: <%= session[:item] %></h2></p>
+
 <h1>Your Category Options Are:</h1>
 
 <% @categories.each do |category| %>
