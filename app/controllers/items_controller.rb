@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :set_meal_selection, only: [:index]
+  before_action :set_meal, only: [:edit]
 
   def index
     @categories = Category.all
@@ -53,8 +53,8 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def set_meal_selection
-    session[:item] = params[:id]
+  def set_meal
+    session[:item] = Item.find(params[:id]).name
   end
 
   def item_params
